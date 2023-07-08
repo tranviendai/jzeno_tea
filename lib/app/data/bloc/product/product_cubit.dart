@@ -8,10 +8,10 @@ class ProductCubit extends Cubit<ProductState>{
     fetchProducts();
   }
   
-   APIRepository productRepo = APIRepository();
+   APIRepository repo = APIRepository();
   void fetchProducts() async {
     try {
-      List<ProductModel> products = await productRepo.fetchListProduct();
+      List<ProductModel> products = await repo.fetchListProduct();
       emit(ProductsLoaded(products));
     } catch (ex) {
       emit(ProductError(ex.toString()));

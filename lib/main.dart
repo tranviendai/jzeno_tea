@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jzeno_tea/app/config/theme_config.dart';
+import 'package:jzeno_tea/app/data/bloc/category/category_cubit.dart';
 import 'package:jzeno_tea/app/data/bloc/product/product_cubit.dart';
 import 'package:jzeno_tea/app/routes/app_route.dart';
 
@@ -16,6 +17,7 @@ class MainApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) =>ProductCubit()),
+        BlocProvider(create: (context) =>CategoryCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

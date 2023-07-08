@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:jzeno_tea/app/model/category_model.dart';
 import 'package:jzeno_tea/app/model/product_model.dart';
 import 'package:jzeno_tea/app/data/repository/api/api.dart';
 
@@ -9,6 +10,7 @@ class APIRepository {
             'Content-Type': 'application/json',
             'Accept': '*/*'
   };
+
 
   Future<List<ProductModel>> fetchListProduct() async {
     try {
@@ -52,5 +54,17 @@ class APIRepository {
       rethrow;
     }
   }
+
+    Future<List<CategoryModel>> fetchListCategory() async {
+    try {
+      Response res = await api.sendRequest.get('/Categories',
+          options: Options(headers: header));
+      List<dynamic> categoryMaps = res.data;
+      return categoryMaps.map((e) => CategoryModel.fromJson(e)).toList();
+    } catch (ex) {
+      rethrow;
+    }
+  }
+
 
 }

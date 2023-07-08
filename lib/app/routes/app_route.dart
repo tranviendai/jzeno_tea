@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jzeno_tea/screen/home_screen.dart';
+import 'package:jzeno_tea/screen/home/home_screen.dart';
 
 class AppRoute {
   static Route onGenerateRoute(RouteSettings settings) {
