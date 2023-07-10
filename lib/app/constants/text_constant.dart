@@ -1,26 +1,28 @@
 // ignore_for_file: prefer_const_declarations, prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:jzeno_tea/app/constants/app_constain.dart';
+import 'package:jzeno_tea/app/constants/app_constant.dart';
 
 class AppText {
   static final String welcomeHeader = "JZeno";
   static final String titleApp = "JZTea";
   static final String started = "GET STARTED";
   static final String homeText = "Home";
-
+  static final String meText = "Setting";
   static final String cartText = "Cart";
+  static final String myCartText = "My Cart";
   static final String addtoCartText = "Add To Cart".toUpperCase();
-
+  static final String editProfile = "Edit Profile";
+  static final String themeSystemText = "Change Color";
+  static final String logoutText= "Logout";
   static final String fontFamily = "rubik";
   static final String fontFamilyBold = "rubikB";
+  static final String notify01 = "This product is out of stock, please choose another product... ";
   static final TextStyle h0 = TextStyle(
       fontFamily: fontFamilyBold,
-      color: AppColor.blackColor,
       fontSize: 25,
       fontWeight: FontWeight.bold);
   static final TextStyle h1 = TextStyle(
       fontFamily: fontFamilyBold,
-      color: AppColor.blackColor,
       fontSize: 20,
       fontWeight: FontWeight.bold);
   static final TextStyle h2 = TextStyle(fontFamily: fontFamily, fontSize: 18);
@@ -43,5 +45,12 @@ class AppText {
         style: TextStyle(color: Colors.white, fontSize: 14),
       ),
     );
+  }
+  static Widget textAlignLeft(Widget text){
+    return Container(
+              alignment: Alignment.centerLeft,
+              margin: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
+              child: text);
   }
 }

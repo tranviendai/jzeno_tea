@@ -4,6 +4,9 @@ class ProductModel {
     double? price;
     int? discount;
     String? image;
+    String? description;
+    String? postDate;
+    bool? isPublic;
 
     ProductModel({
         this.id,
@@ -11,14 +14,20 @@ class ProductModel {
         this.price,
         this.discount,
         this.image,
+        this.description,
+        this.postDate,
+        this.isPublic
     });
 
-    factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
+    factory ProductModel.fromListJson(Map<String, dynamic> json) => ProductModel(
         id: json["id"],
         name: json["name"],
         price: json["price"]?.toDouble(),
         discount: json["discount"],
         image: json["image"],
+        description : json["description"],
+        postDate: json["postDate"],
+        isPublic: json["isPublic"]
     );
 
     Map<String, dynamic> toJson() => {
@@ -27,5 +36,8 @@ class ProductModel {
         "price": price,
         "discount": discount,
         "image": image,
+        "description": description,
+        "postDate": postDate,
+        "isPublic": isPublic
     };
 }

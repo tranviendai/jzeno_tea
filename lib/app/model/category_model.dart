@@ -17,7 +17,7 @@ class CategoryModel {
         id: json["id"],
         name: json["name"],
         icon: json["icon"],
-        products: json["products"] == null ? [] : List<ProductModel>.from(json["products"]!.map((x) => ProductModel.fromJson(x))),
+        products: json["products"] == null ? [] : List<ProductModel>.from(json["products"]!.map((x) => ProductModel.fromListJson(x))),
     );
 
     Map<String, dynamic> toJson() => {

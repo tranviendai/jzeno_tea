@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'app_constain.dart';
+import 'app_constant.dart';
 
 class AppButton {
   Widget buttonRoute(BuildContext context, String text,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jzeno_tea/app/constants/app_constain.dart';
+import 'package:jzeno_tea/app/constants/app_constant.dart';
 import 'package:jzeno_tea/app/data/repository/api/api.dart';
 import 'package:jzeno_tea/app/model/product_model.dart';
+import 'package:jzeno_tea/screen/product/detail_screen.dart';
 
 class ProductFilter extends StatefulWidget {
   final String title;
@@ -36,9 +37,13 @@ class _ProductFilterState extends State<ProductFilter> {
               padding: const EdgeInsets.all(5),
               margin: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5), color: Colors.white),
+                  borderRadius: BorderRadius.circular(5),color:Theme.of(context).primaryColor),
               child: InkWell(
-                onTap: () {},
+                onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProductDetail(product: product),
+              )),
                 child: Stack(
                   children: [
                     product.discount != 0
@@ -78,7 +83,7 @@ class _ProductFilterState extends State<ProductFilter> {
                                           NetworkImage(path + product.image!)),
                                   borderRadius: BorderRadius.circular(5)),
                             )),
-                        SizedBox(
+                        const SizedBox(
                           width: 30,
                           height: 10,
                         ),
@@ -103,8 +108,8 @@ class _ProductFilterState extends State<ProductFilter> {
                                   margin:
                                       const EdgeInsets.symmetric(vertical: 3),
                                   child: Text(
-                                    "\$${product.price!}",
-                                    style: AppText.h2.copyWith(
+                                    "\$${AppPrice().productPrice(product.price!, product.discount!).toStringAsPrecision(3)}",
+                                    style: AppText.h1.copyWith(
                                         color: Colors.red,
                                         fontWeight: FontWeight.bold),
                                   ),

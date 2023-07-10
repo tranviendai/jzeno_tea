@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jzeno_tea/app/constants/app_constain.dart';
+import 'package:jzeno_tea/app/constants/app_constant.dart';
 import 'package:jzeno_tea/app/data/repository/api/api.dart';
 import 'package:jzeno_tea/app/model/product_model.dart';
+import 'package:jzeno_tea/screen/product/detail_screen.dart';
 
 Widget girdProduct(List<ProductModel> products) {
   String path = "${API().baseUrl}/images/";
@@ -11,17 +12,23 @@ Widget girdProduct(List<ProductModel> products) {
       padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, childAspectRatio: 0.6),
+          crossAxisCount: 2, childAspectRatio: 0.58),
       itemBuilder: (context, index) {
         var product = products[index];
         return InkWell(
-          onTap: () {},
+          onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProductDetail(product: product),
+              )),
           child: Container(
               padding: const EdgeInsets.all(5),
               margin: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5), color: Colors.white),
-              child: Column(children: [
+                  borderRadius: BorderRadius.circular(5),color: Theme.of(context).primaryColor),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
                 Stack(
                   children: [
                     product.discount != 0
@@ -70,14 +77,10 @@ Widget girdProduct(List<ProductModel> products) {
                   ),
                 ),
                 Container(
-                  alignment: Alignment.topLeft,
+                  alignment: Alignment.topRight,
                   margin:
                       const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-                  child: Text(
-                    "\$${product.price!}",
-                    style: AppText.h2.copyWith(
-                        color: Colors.red, fontWeight: FontWeight.bold),
-                  ),
+                  child: Text("\$${AppPrice().productPrice(product.price!, product.discount!).toStringAsPrecision(3)}",style: AppText.h1.copyWith(color: Colors.red),)
                 ),
               ])),
         );

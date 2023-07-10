@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jzeno_tea/app/constants/app_constain.dart';
+import 'package:jzeno_tea/app/constants/app_constant.dart';
 import 'package:jzeno_tea/app/data/bloc/category/category_cubit.dart';
 import 'package:jzeno_tea/app/data/bloc/category/category_state.dart';
 import 'package:jzeno_tea/app/data/bloc/product/product_cubit.dart';
@@ -51,10 +51,10 @@ class _HomeScreenState extends State<HomeScreen> {
               InkWell(
                 onTap: () {},
                 child: Container(
-                  margin: const EdgeInsets.all(5),
-                  padding: const EdgeInsets.all(25),
+                  margin: const EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(5)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,15 +77,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.only(top: 10),
+                 margin: const EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(5)),
                 child: Row(
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width,
+                      width: MediaQuery.of(context).size.width - 50,
                       height: 80,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.white),
+                          color: Theme.of(context).primaryColor),
                       child: BlocBuilder<CategoryCubit, CategoryState>(
                         builder: (context, state) {
                           if (state is CategorysLoaded) {
@@ -98,13 +102,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              BlocBuilder<ProductCubit, ProductState>(
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                child: BlocBuilder<ProductCubit, ProductState>(
                   builder: (context, state) {
                 if (state is ProductsLoaded) {
                   products = state.products;
                 }
                 return girdProduct(products);
-              })
+              }),
+              )
             ]))));
   }
 }
