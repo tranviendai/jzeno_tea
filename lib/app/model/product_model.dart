@@ -1,3 +1,5 @@
+import 'package:jzeno_tea/app/model/topping_model.dart';
+
 class ProductModel {
     int? id;
     String? name;
@@ -7,6 +9,9 @@ class ProductModel {
     String? description;
     String? postDate;
     bool? isPublic;
+    String? size;
+    int? quantity;
+    List<ToppingModel>? topping;
 
     ProductModel({
         this.id,
@@ -16,7 +21,10 @@ class ProductModel {
         this.image,
         this.description,
         this.postDate,
-        this.isPublic
+        this.isPublic,
+        this.size,
+        this.quantity,
+        this.topping
     });
 
     factory ProductModel.fromListJson(Map<String, dynamic> json) => ProductModel(
@@ -40,4 +48,7 @@ class ProductModel {
         "postDate": postDate,
         "isPublic": isPublic
     };
+
+     double get totalPrice => topping!.fold(0, (total, current) => total + current.price!);
+
 }

@@ -5,8 +5,10 @@ import 'package:jzeno_tea/app/data/bloc/category/category_cubit.dart';
 import 'package:jzeno_tea/app/data/bloc/category/category_state.dart';
 import 'package:jzeno_tea/app/data/bloc/product/product_cubit.dart';
 import 'package:jzeno_tea/app/data/bloc/product/product_state.dart';
+import 'package:jzeno_tea/app/model/cart_model.dart';
 import 'package:jzeno_tea/app/model/category_model.dart';
 import 'package:jzeno_tea/app/model/product_model.dart';
+import 'package:jzeno_tea/screen/cart/bloc/cart_cubit.dart';
 import 'package:jzeno_tea/screen/widget/category_gird.dart';
 import 'package:jzeno_tea/screen/widget/product_gird.dart';
 
@@ -42,20 +44,36 @@ class _HomeScreenState extends State<HomeScreen> {
                     elevation: 0,
                     title: Text(AppText.titleApp.toUpperCase(),
                         style: AppText.h0.copyWith(color: Colors.white)),
+                    actions: [
+                      InkWell(
+                        borderRadius: BorderRadius.circular(25),
+                        onTap: () {
+                          Navigator.pushNamed(context, "Cart");
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(15),
+                          child: BlocBuilder<CartCubit, CartModel>(
+                              builder: (context, state) =>
+                                  state.products!.isEmpty
+                                      ? Icon(Icons.shopping_cart_outlined)
+                                      : Icon(Icons.shopping_cart)),
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ];
             },
             body: SingleChildScrollView(
                 child: Column(children: [
-              InkWell(
-                onTap: () {},
-                child: Container(
-                  margin: const EdgeInsets.all(15),
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(5)),
+              Container(
+                margin: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(5)),
+                child: InkWell(
+                  onTap: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -77,11 +95,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(
-                 margin: const EdgeInsets.all(15),
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(5)),
+                margin: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(5)),
                 child: Row(
                   children: [
                     Container(
@@ -105,12 +123,12 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: BlocBuilder<ProductCubit, ProductState>(
-                  builder: (context, state) {
-                if (state is ProductsLoaded) {
-                  products = state.products;
-                }
-                return girdProduct(products);
-              }),
+                    builder: (context, state) {
+                  if (state is ProductsLoaded) {
+                    products = state.products;
+                  }
+                  return girdProduct(products);
+                }),
               )
             ]))));
   }

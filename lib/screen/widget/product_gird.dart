@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:jzeno_tea/app/constants/app_constant.dart';
-import 'package:jzeno_tea/app/data/repository/api/api.dart';
 import 'package:jzeno_tea/app/model/product_model.dart';
 import 'package:jzeno_tea/screen/product/detail_screen.dart';
 
 Widget girdProduct(List<ProductModel> products) {
-  String path = "${API().baseUrl}/images/";
   return GridView.builder(
       shrinkWrap: true,
       itemCount: products.length,
@@ -58,7 +56,7 @@ Widget girdProduct(List<ProductModel> products) {
                     Container(
                       margin: const EdgeInsets.only(top: 30),
                       child: Image.network(
-                        path + product.image!,
+                        AppImage.path + product.image!,
                         height: 180,
                       ),
                     ),

@@ -1,8 +1,8 @@
 import 'package:jzeno_tea/app/model/product_model.dart';
-import 'package:jzeno_tea/app/model/topping_model.dart';
 
 class CartModel{
   List<ProductModel>? products;
-  List<ToppingModel>? toppings;
-  CartModel({this.products, this.toppings});
+  CartModel({this.products});
+
+  double get totalPrice => products!.fold(0, (total, current) => total + current.price! * current.quantity!);
 }

@@ -1,3 +1,4 @@
+import 'package:jzeno_tea/app/model/cart_model.dart';
 import 'package:jzeno_tea/app/model/product_model.dart';
 
 abstract class ProductState {}
@@ -25,3 +26,9 @@ class ProductError extends ProductState{
   final String? message;
   ProductError(this.message);
 }
+
+class CartLoadedState extends ProductState {
+  final CartModel cart;
+  CartLoadedState(this.cart);
+}
+

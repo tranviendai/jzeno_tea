@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jzeno_tea/app/constants/app_constant.dart';
-import 'package:jzeno_tea/app/data/repository/api/api.dart';
 import 'package:jzeno_tea/app/model/product_model.dart';
 import 'package:jzeno_tea/screen/product/detail_screen.dart';
 
@@ -16,7 +15,6 @@ class ProductFilter extends StatefulWidget {
 class _ProductFilterState extends State<ProductFilter> {
   @override
   Widget build(BuildContext context) {
-    String path = "${API().baseUrl}/images/";
     double heightItem = 125;
     return Scaffold(
       appBar: AppBar(
@@ -39,11 +37,13 @@ class _ProductFilterState extends State<ProductFilter> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),color:Theme.of(context).primaryColor),
               child: InkWell(
-                onTap: () => Navigator.push(
+                onTap: () => 
+                Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => ProductDetail(product: product),
-              )),
+              ))
+              ,
                 child: Stack(
                   children: [
                     product.discount != 0
@@ -80,7 +80,7 @@ class _ProductFilterState extends State<ProductFilter> {
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image:
-                                          NetworkImage(path + product.image!)),
+                                          NetworkImage(AppImage.path + product.image!)),
                                   borderRadius: BorderRadius.circular(5)),
                             )),
                         const SizedBox(

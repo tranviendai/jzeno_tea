@@ -5,6 +5,8 @@ class API{
   final Dio _dio = Dio();
   //flutter run -d chrome --web-port=4000
   String baseUrl = "http://10.0.2.2:5172";
+
+
   API(){
     _dio.options.baseUrl = "$baseUrl/api";
     // _dio.interceptors.add(PrettyDioLogger());

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jzeno_tea/app/constants/app_constant.dart';
+import 'package:jzeno_tea/screen/cart/bloc/cart_cubit.dart';
 import 'package:jzeno_tea/app/data/repository/api/api.dart';
 import 'package:jzeno_tea/app/model/product_model.dart';
 import 'package:jzeno_tea/app/model/topping_model.dart';
 
 class AddCartScreen extends StatefulWidget {
   final ProductModel product;
-  final List<ToppingModel> toppings;
+  final List<ToppingModel> topping;
   const AddCartScreen(
-      {super.key, required this.product, required this.toppings});
+      {super.key, required this.product, required this.topping});
 
   @override
   State<AddCartScreen> createState() => _AddCartScreenState();
@@ -21,12 +23,14 @@ class _AddCartScreenState extends State<AddCartScreen> {
   SizeList? _size = SizeList.S;
   double totalPrice = 0;
   double totalTopping = 1;
+  List<ToppingModel> tempTopping = [];
   List<ToppingModel> listTopping = [];
+
   @override
   void initState() {
     super.initState();
     totalPrice = AppPrice().productPrice(widget.product.price!, widget.product.discount!);
-    listTopping = widget.toppings;
+    tempTopping = widget.topping;
   }
   int count = 1;
   void itemCountPlus() {
@@ -52,8 +56,8 @@ class _AddCartScreenState extends State<AddCartScreen> {
     super.dispose();
     totalPrice = 0;
     totalTopping = 0;
-    for(int i =0; i<widget.toppings.length;i++){
-      listTopping[i].isCheck = false;
+    for(int i =0; i<widget.topping.length;i++){
+      tempTopping[i].isCheck = false;
     }
   }
   @override
@@ -63,9 +67,8 @@ class _AddCartScreenState extends State<AddCartScreen> {
     double typeS = price;
     double typeM = price + (price * 0.2);
     double typeL = price + (price * 0.4);
-   
     return Container(
-        height: MediaQuery.of(context).size.height / 1.2,
+        height: MediaQuery.of(context).size.height / 1.1,
         margin: const EdgeInsets.all(20),
         child: Stack(
           children: [
@@ -125,7 +128,7 @@ class _AddCartScreenState extends State<AddCartScreen> {
                       onChanged: (value) => onChangeSelect(value,typeL)),
                   Column(children: [
                     AppText.textAlignLeft(Text(
-                        "Select Topping (Maximum: ${listTopping.length}):",
+                        "Select Topping (Maximum: ${tempTopping.length}):",
                         style: AppText.h1)),
                     Container(
                         height: MediaQuery.of(context).size.height / 3.5,
@@ -133,9 +136,9 @@ class _AddCartScreenState extends State<AddCartScreen> {
                         child: ListView.builder(
                             padding: EdgeInsets.zero,
                             shrinkWrap: true,
-                            itemCount: listTopping.length,
+                            itemCount: tempTopping.length,
                             itemBuilder: (context, index) {
-                              var topping = listTopping[index];
+                              var topping = tempTopping[index];
                               return Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -146,8 +149,14 @@ class _AddCartScreenState extends State<AddCartScreen> {
                                           onChanged: (value) {
                                             setState(() {
                                               topping.isCheck = value;
-                                              if(topping.isCheck==true) totalTopping += topping.price!;
-                                              else totalTopping -=topping.price!;
+                                              if(topping.isCheck!) {
+                                                totalTopping += topping.price!;
+                                                listTopping.add(topping);
+                                              } 
+                                              else {
+                                                totalTopping -=topping.price!;
+                                                listTopping.remove(topping);
+                                              };
                                             });
                                           }),
                                       Container(
@@ -186,8 +195,24 @@ class _AddCartScreenState extends State<AddCartScreen> {
                         Expanded(
                             flex: 2,
                             child: ElevatedButton(
-                                child: Text("Add ${(totalPrice*count*totalTopping).toStringAsPrecision(3)}"),
-                                onPressed: () {}))
+                                child: Text("Add ${((totalPrice*count)+(totalTopping * count)).toStringAsPrecision(3)}"),
+                                onPressed: () {
+
+                                  Navigator.pop(context);
+                                 context.read<CartCubit>().addToCart(ProductModel(
+                                    id: widget.product.id,
+                                    name: widget.product.name,
+                                    price: _size!.index == 0 ? typeS : _size!.index == 1 ? typeM : typeL ,
+                                    description: "",
+                                    discount: widget.product.discount,
+                                    image: widget.product.image,
+                                    isPublic: true,
+                                    postDate: widget.product.postDate,
+                                    size: _size!.index == 0 ? "S" : _size!.index == 1 ? "M" : "L",
+                                    quantity: count,
+                                    topping: listTopping
+                                  ));
+                                }))
                       ])
                 ]),
           ],

@@ -17,6 +17,10 @@ class AppText {
   static final String fontFamily = "rubik";
   static final String fontFamilyBold = "rubikB";
   static final String notify01 = "This product is out of stock, please choose another product... ";
+    static final String notify02 = "No extras dishes...";
+        static final String notify03 = "No cart empty...";
+
+
   static final TextStyle h0 = TextStyle(
       fontFamily: fontFamilyBold,
       fontSize: 25,

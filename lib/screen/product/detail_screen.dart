@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jzeno_tea/app/constants/app_constant.dart';
 import 'package:jzeno_tea/app/data/bloc/topping/topping_cubit.dart';
 import 'package:jzeno_tea/app/data/bloc/topping/topping_state.dart';
-import 'package:jzeno_tea/app/data/repository/api/api.dart';
 import 'package:jzeno_tea/app/model/product_model.dart';
 import 'package:jzeno_tea/app/model/topping_model.dart';
 import 'package:jzeno_tea/screen/cart/addcart_bottomshet.dart';
@@ -20,7 +19,6 @@ class ProductDetail extends StatefulWidget {
 class _ProductDetailState extends State<ProductDetail> {
   @override
   Widget build(BuildContext context) {
-    String path = "${API().baseUrl}/images/";
     List<ToppingModel> toppings = [];
     var product = widget.product;
     return Scaffold(
@@ -52,7 +50,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(path + product.image!))),
+                          image: NetworkImage(AppImage.path + product.image!))),
                 )),
             AppText.textAlignLeft(
               Text(product.name!, style: AppText.h0, textAlign: TextAlign.left),
@@ -105,9 +103,14 @@ class _ProductDetailState extends State<ProductDetail> {
                                     enableDrag: true,
                                     isDismissible: true,
                                     shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15)),
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(15),
+                                          topRight: Radius.circular(15)),
                                     ),
-                                    builder: (context) =>  AddCartScreen(product: product,toppings: toppings,)),
+                                    builder: (context) => AddCartScreen(
+                                          product: product,
+                                          topping: toppings,
+                                        )),
                                 child: Text(
                                   AppText.addtoCartText,
                                   style:

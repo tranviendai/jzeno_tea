@@ -43,7 +43,7 @@ class _SettingScreenState extends State<SettingScreen> {
           child: Column(
             children: [
               itemApp(context, AppText.myCartText, func: () {
-                context.read<SettingCubit>().toggleTheme();
+                Navigator.pushNamed(context, "Cart");
               }),
               itemApp(context, AppText.logoutText, icon: Icons.logout,
                   func: () {
