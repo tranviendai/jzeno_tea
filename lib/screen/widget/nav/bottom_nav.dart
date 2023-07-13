@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jzeno_tea/app/constants/app_constant.dart';
-import 'package:jzeno_tea/screen/home/home_screen.dart';
-import 'package:jzeno_tea/screen/setting/setting_screen.dart';
+import 'package:jzeno_tea/screen/mobile_responsive/home/home_screen.dart';
+import 'package:jzeno_tea/screen/widget/layout/setting/setting_screen.dart';
 
 class TabMobile extends StatefulWidget {
   const TabMobile({super.key});
@@ -13,6 +13,7 @@ class TabMobile extends StatefulWidget {
 class _TabMobileState extends State<TabMobile> {
   final PageController pageController = PageController();
   int _selectedIndex = 0;
+  
   final List<Widget> widgetOptions = const [
     HomeScreen(),
     SettingScreen()
@@ -33,8 +34,8 @@ class _TabMobileState extends State<TabMobile> {
         showUnselectedLabels: false,
         showSelectedLabels: false,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: AppText.homeText),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: AppText.meText),
+          BottomNavigationBarItem(icon: const Icon(Icons.home), label: AppText.homeText),
+          BottomNavigationBarItem(icon: const Icon(Icons.person), label: AppText.meText),
         ],
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,

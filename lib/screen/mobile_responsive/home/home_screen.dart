@@ -8,9 +8,9 @@ import 'package:jzeno_tea/app/data/bloc/product/product_state.dart';
 import 'package:jzeno_tea/app/model/cart_model.dart';
 import 'package:jzeno_tea/app/model/category_model.dart';
 import 'package:jzeno_tea/app/model/product_model.dart';
-import 'package:jzeno_tea/screen/cart/bloc/cart_cubit.dart';
+import 'package:jzeno_tea/screen/mobile_responsive/cart/bloc/cart_cubit.dart';
 import 'package:jzeno_tea/screen/widget/category_gird.dart';
-import 'package:jzeno_tea/screen/widget/product_gird.dart';
+import 'package:jzeno_tea/screen/widget/layout/product/product_gird.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
             headerSliverBuilder: (context, innerBoxIsScrolled) {
               return [
                 SliverAppBar(
+                    automaticallyImplyLeading: false,
                   expandedHeight: 240,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Image.asset(
@@ -40,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   // snap: true,
                   pinned: true,
                   bottom: AppBar(
+                    automaticallyImplyLeading: false,
                     backgroundColor: Colors.transparent,
                     elevation: 0,
                     title: Text(AppText.titleApp.toUpperCase(),
@@ -51,12 +53,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.pushNamed(context, "Cart");
                         },
                         child: Container(
-                          padding: EdgeInsets.all(15),
+                          padding: const EdgeInsets.all(15),
                           child: BlocBuilder<CartCubit, CartModel>(
                               builder: (context, state) =>
                                   state.products!.isEmpty
-                                      ? Icon(Icons.shopping_cart_outlined)
-                                      : Icon(Icons.shopping_cart)),
+                                      ? const Icon(Icons.shopping_cart_outlined)
+                                      : const Icon(Icons.shopping_cart)),
                         ),
                       )
                     ],
@@ -73,7 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(5)),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    print(MediaQuery.of(context).size.width);
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -101,9 +105,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(5)),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width - 50,
                       height: 80,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -127,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (state is ProductsLoaded) {
                     products = state.products;
                   }
-                  return girdProduct(products);
+                  return LayoutGirdProduct(products: products);
                 }),
               )
             ]))));

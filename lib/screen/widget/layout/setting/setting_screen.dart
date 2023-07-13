@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jzeno_tea/app/constants/app_constant.dart';
-import 'package:jzeno_tea/screen/setting/bloc/setting_bloc.dart';
+import 'package:jzeno_tea/screen/widget/layout/setting/bloc/setting_bloc.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -23,8 +23,9 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Me"),
+          title: Text(AppText.settingText),
           elevation: 0,
+          automaticallyImplyLeading: false,
           actions: [
             IconButton(
                 onPressed: toggleTheme,

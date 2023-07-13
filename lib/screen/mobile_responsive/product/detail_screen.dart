@@ -5,7 +5,7 @@ import 'package:jzeno_tea/app/data/bloc/topping/topping_cubit.dart';
 import 'package:jzeno_tea/app/data/bloc/topping/topping_state.dart';
 import 'package:jzeno_tea/app/model/product_model.dart';
 import 'package:jzeno_tea/app/model/topping_model.dart';
-import 'package:jzeno_tea/screen/cart/addcart_bottomshet.dart';
+import 'package:jzeno_tea/screen/mobile_responsive/cart/addcart_bottomshet.dart';
 import 'package:jzeno_tea/screen/widget/topping_gird.dart';
 
 class ProductDetail extends StatefulWidget {

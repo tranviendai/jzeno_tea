@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jzeno_tea/app/constants/app_constant.dart';
 import 'package:jzeno_tea/app/model/product_model.dart';
-import 'package:jzeno_tea/screen/product/detail_screen.dart';
+import 'package:jzeno_tea/screen/mobile_responsive/product/detail_screen.dart';
 
 class ProductFilter extends StatefulWidget {
   final String title;
@@ -73,20 +73,7 @@ class _ProductFilterState extends State<ProductFilter> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Expanded(
-                            flex: 1,
-                            child: Container(
-                              height: heightItem,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image:
-                                          NetworkImage(AppImage.path + product.image!)),
-                                  borderRadius: BorderRadius.circular(5)),
-                            )),
-                        const SizedBox(
-                          width: 30,
-                          height: 10,
-                        ),
+                         Image(image: NetworkImage(AppImage.path + product.image!)),
                         Expanded(
                             flex: 2,
                             child: Column(

@@ -14,6 +14,6 @@ class AppColor {
   static final Color whiteColor = Colors.white;
   static final Color greenColor = Colors.green;
   static final Color amberColor = Colors.amber;
-  static final Color fillTextFiledColor =  Color.fromARGB(255, 240, 240, 240);
+  static final Color scafflodBgColor =  Color.fromARGB(255, 240, 240, 240);
 
 }

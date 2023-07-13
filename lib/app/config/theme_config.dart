@@ -4,8 +4,8 @@ import 'package:jzeno_tea/app/constants/app_constant.dart';
 class AppTheme {
   static ThemeData  lightTheme = ThemeData(
     brightness: Brightness.light,
-    scaffoldBackgroundColor: const Color.fromARGB(255, 240, 240, 240),
-    cardColor: Colors.white,
+    scaffoldBackgroundColor: AppColor.scafflodBgColor,
+    cardColor: AppColor.grey50Color,
     primaryColor: Colors.white,
     textTheme: TextTheme(
       headlineLarge: AppText.h1.copyWith(color: Colors.black),
@@ -15,7 +15,7 @@ class AppTheme {
   );
   static ThemeData blackTheme = ThemeData(
     brightness: Brightness.dark,
-    cardColor: Colors.black45,
+    cardColor: Colors.black12,
     primaryColor: const Color.fromARGB(115, 90, 90, 90),
     appBarTheme:  AppBarTheme(color: const Color.fromARGB(255, 37, 37, 37),titleTextStyle: AppText.h0.copyWith(color: Colors.white)),
     textTheme: TextTheme(
@@ -24,4 +24,5 @@ class AppTheme {
       headlineSmall: AppText.h3.copyWith(color: Colors.white),
     ),
   );
+
 }

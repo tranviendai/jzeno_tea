@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jzeno_tea/app/constants/app_constant.dart';
-import 'package:jzeno_tea/screen/cart/bloc/cart_cubit.dart';
+import 'package:jzeno_tea/screen/mobile_responsive/cart/bloc/cart_cubit.dart';
 import 'package:jzeno_tea/app/model/cart_model.dart';
 
 class CartScreen extends StatefulWidget {
@@ -78,9 +78,7 @@ class _CartScreenState extends State<CartScreen> {
                                   AppImage.path + product.image!,
                                   height: 100,
                                 ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width / 1.5,
+                                Expanded(
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,

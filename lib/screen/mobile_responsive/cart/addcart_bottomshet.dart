@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jzeno_tea/app/constants/app_constant.dart';
-import 'package:jzeno_tea/screen/cart/bloc/cart_cubit.dart';
+import 'package:jzeno_tea/screen/mobile_responsive/cart/bloc/cart_cubit.dart';
 import 'package:jzeno_tea/app/data/repository/api/api.dart';
 import 'package:jzeno_tea/app/model/product_model.dart';
 import 'package:jzeno_tea/app/model/topping_model.dart';
