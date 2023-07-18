@@ -88,7 +88,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         Expanded(
                           flex: 1,
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed:()=> Navigator.pushNamed(context, "Cart"),
                               icon: const Icon(
                                 Icons.shopping_cart_sharp,
                                 color: Colors.blue,

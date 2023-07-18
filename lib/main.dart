@@ -29,7 +29,7 @@ class MainApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: state,
           // darkTheme: AppTheme.blackTheme,
-          // themeMode: ThemeMode.system,
+          themeMode: ThemeMode.system,
           initialRoute: "/",
           onGenerateRoute: AppRoute.onGenerateRoute,
         ),

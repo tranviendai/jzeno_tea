@@ -48,7 +48,7 @@ class _SettingScreenState extends State<SettingScreen> {
               }),
               itemApp(context, AppText.logoutText, icon: Icons.logout,
                   func: () {
-                // Navigator.pop(context);
+                Navigator.pushNamed(context, "SignIn");
               }),
             ],
           ),

@@ -14,8 +14,5 @@ class SettingCubit extends Cubit<ThemeData> {
     }
   }
 
-  _saveOptions() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('option', true);
-  }
+
 }

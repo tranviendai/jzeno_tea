@@ -8,4 +8,6 @@ class AppImage{
   static final String bgMilkTea = imagePath + "bg_milk_tea.png";
   static final String logo = imagePath + "logoJZ.png";
   static final String path = "${API().baseUrl}/images/";
+    static final String iconFB = imagePath + "iconFB.png";
+  static final String iconGG = imagePath + "iconGG.png";
 }

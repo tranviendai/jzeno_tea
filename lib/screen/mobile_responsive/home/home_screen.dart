@@ -30,40 +30,38 @@ class _HomeScreenState extends State<HomeScreen> {
               return [
                 SliverAppBar(
                     automaticallyImplyLeading: false,
-                  expandedHeight: 240,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: Image.asset(
-                      AppImage.bgMilkTea,
-                      fit: BoxFit.cover,
+                    expandedHeight: 240,
+                    flexibleSpace: FlexibleSpaceBar(
+                      background: Image.asset(
+                        AppImage.bgMilkTea,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  floating: true,
-                  // snap: true,
-                  pinned: true,
-                  bottom: AppBar(
-                    automaticallyImplyLeading: false,
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    title: Text(AppText.titleApp.toUpperCase(),
-                        style: AppText.h0.copyWith(color: Colors.white)),
-                    actions: [
-                      InkWell(
-                        borderRadius: BorderRadius.circular(25),
-                        onTap: () {
-                          Navigator.pushNamed(context, "Cart");
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(15),
-                          child: BlocBuilder<CartCubit, CartModel>(
-                              builder: (context, state) =>
-                                  state.products!.isEmpty
-                                      ? const Icon(Icons.shopping_cart_outlined)
-                                      : const Icon(Icons.shopping_cart)),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                    floating: true,
+                    // snap: true,
+                    pinned: true,
+                    bottom: AppBar(
+                        automaticallyImplyLeading: false,
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        title: Text(AppText.titleApp.toUpperCase(),
+                            style: AppText.h0.copyWith(color: Colors.white)),
+                        actions: [
+                          InkWell(
+                              borderRadius: BorderRadius.circular(25),
+                              onTap: () {
+                                Navigator.pushNamed(context, "Cart");
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(15),
+                                child: BlocBuilder<CartCubit, CartModel>(
+                                    builder: (context, state) =>
+                                        state.products!.isEmpty
+                                            ? const Icon(
+                                                Icons.shopping_cart_outlined)
+                                            : const Icon(Icons.shopping_cart)),
+                              ))
+                        ]))
               ];
             },
             body: SingleChildScrollView(

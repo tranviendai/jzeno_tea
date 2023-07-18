@@ -26,6 +26,8 @@ flutter:
   assets:
     - assets/images/bg_milk_tea.png
     - assets/images/logoJZ.png
+    - assets/images/iconGG.png
+    - assets/images/iconFB.png
   fonts:
     - family: rubik
       fonts:

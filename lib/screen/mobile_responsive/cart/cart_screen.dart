@@ -31,13 +31,13 @@ class _CartScreenState extends State<CartScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.arrow_back_ios),
+              icon: const Icon(Icons.arrow_back_ios),
             ),
             title: Text(AppText.cartText),
             actions: [
               state.products!.isNotEmpty
                   ? Container(
-                      margin: EdgeInsets.only(right: 20),
+                      margin:const EdgeInsets.only(right: 20),
                       alignment: Alignment.center,
                       child: RichText(
                         text: TextSpan(children: [
@@ -85,7 +85,7 @@ class _CartScreenState extends State<CartScreen> {
                                     children: [
                                       Container(
                                         margin:
-                                            EdgeInsets.symmetric(vertical: 5),
+                                           const EdgeInsets.symmetric(vertical: 5),
                                         child: Text(
                                           "${product.name!} (${product.size!})",
                                           style: AppText.h1,
@@ -96,7 +96,7 @@ class _CartScreenState extends State<CartScreen> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            "\$${(product.price! * product.quantity!).toStringAsPrecision(3)}",
+                                            "\$${(product.price!).toStringAsPrecision(3)}",
                                             style: AppText.h1
                                                 .copyWith(color: Colors.red),
                                           ),
@@ -119,7 +119,7 @@ class _CartScreenState extends State<CartScreen> {
                                                             .removeToCart(
                                                                 product);
                                                       },
-                                                      icon: Icon(Icons
+                                                      icon: const Icon(Icons
                                                           .delete_outlined)),
                                               Container(
                                                   padding: EdgeInsets.all(5),

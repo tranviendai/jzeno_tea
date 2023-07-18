@@ -15,8 +15,16 @@ class AppText {
   static final String editProfile = "Edit Profile";
   static final String themeSystemText = "Change Color";
   static final String logoutText = "Logout";
+  static final String signInText = "SignIn";
+  static final String fullname ="FullName";
+    static final String userName = "Username";
+  static final String signUpText = "SignUp";
+    static final String confirmPassText = "Confirm Password";
+  static final String forgotPassText = "Forgot Password?";
   static final String fontFamily = "rubik";
   static final String fontFamilyBold = "rubikB";
+    static final String fbText = "Continue With Facebook";
+  static final String ggText = "Continue With Google";
     static final String idText = "ID";
   static final String nameText = "Name";
   static final String settingText = "Setting";
