@@ -8,9 +8,10 @@ class ProductModel {
     String? image;
     String? description;
     String? postDate;
-    bool? isPublic;
+    bool? isPublish;
     String? size;
     int? quantity;
+    String? categoryID;
     List<ToppingModel>? topping;
 
     ProductModel({
@@ -21,10 +22,11 @@ class ProductModel {
         this.image,
         this.description,
         this.postDate,
-        this.isPublic,
+        this.isPublish,
         this.size,
         this.quantity,
-        this.topping
+        this.topping,
+        this.categoryID
     });
 
     factory ProductModel.fromListJson(Map<String, dynamic> json) => ProductModel(
@@ -35,9 +37,10 @@ class ProductModel {
         image: json["image"],
         description : json["description"],
         postDate: json["postDate"],
-        isPublic: json["isPublic"]
+        isPublish: json["isPublish"],
+        categoryID: json["categoryID"],
     );
-
+    
     Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
@@ -46,9 +49,10 @@ class ProductModel {
         "image": image,
         "description": description,
         "postDate": postDate,
-        "isPublic": isPublic
+        "isPublish": isPublish,
+        "categoryID": categoryID
     };
-
+    
      double get totalPrice => topping!.fold(0, (total, current) => total + current.price!);
 
 }

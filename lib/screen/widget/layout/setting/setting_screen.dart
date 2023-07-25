@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jzeno_tea/app/constants/app_constant.dart';
+import 'package:jzeno_tea/app/data/bloc/auth/auth_cubit.dart';
+import 'package:jzeno_tea/app/data/repository/repository.dart';
 import 'package:jzeno_tea/screen/widget/layout/setting/bloc/setting_bloc.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -11,6 +13,7 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+
   bool isChangeColor = false;
   void toggleTheme() {
     context.read<SettingCubit>().toggleTheme();
@@ -48,6 +51,7 @@ class _SettingScreenState extends State<SettingScreen> {
               }),
               itemApp(context, AppText.logoutText, icon: Icons.logout,
                   func: () {
+                AuthCubit.token = "";
                 Navigator.pushNamed(context, "SignIn");
               }),
             ],

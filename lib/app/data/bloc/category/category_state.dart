@@ -4,9 +4,9 @@ abstract class CategoryState {}
 
 class CategoryLoading extends CategoryState {}
 
-class CategorysLoaded extends CategoryState{
+class CategoryLoaded extends CategoryState{
   final List<CategoryModel> categories;
-  CategorysLoaded(this.categories);
+  CategoryLoaded(this.categories);
 }
 
 class CategoryError extends CategoryState{

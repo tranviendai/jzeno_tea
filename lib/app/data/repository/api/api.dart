@@ -10,7 +10,7 @@ class API{
 
   API(){
     _dio.options.baseUrl = "$baseUrl/api";
-    // _dio.interceptors.add(PrettyDioLogger());
+    _dio.interceptors.add(PrettyDioLogger());
   }
 
   Dio get sendRequest => _dio;

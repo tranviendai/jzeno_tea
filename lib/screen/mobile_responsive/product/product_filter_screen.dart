@@ -41,9 +41,8 @@ class _ProductFilterState extends State<ProductFilter> {
                 Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ProductDetail(product: product),
-              ))
-              ,
+                builder: (context) => ProductDetail(product: product)
+              )),
                 child: Stack(
                   children: [
                     product.discount != 0

@@ -206,7 +206,7 @@ class _AddCartScreenState extends State<AddCartScreen> {
                                     description: "",
                                     discount: widget.product.discount,
                                     image: widget.product.image,
-                                    isPublic: true,
+                                    isPublish: true,
                                     postDate: widget.product.postDate,
                                     size: _size!.index == 0 ? "S" : _size!.index == 1 ? "M" : "L",
                                     quantity: count,

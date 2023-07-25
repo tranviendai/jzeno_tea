@@ -4,7 +4,8 @@ import 'package:jzeno_tea/screen/mobile_responsive/home/home_screen.dart';
 import 'package:jzeno_tea/screen/widget/layout/setting/setting_screen.dart';
 
 class TabMobile extends StatefulWidget {
-  const TabMobile({super.key});
+  final String? token;
+  const TabMobile({this.token,super.key});
 
   @override
   State<TabMobile> createState() => _TabMobileState();

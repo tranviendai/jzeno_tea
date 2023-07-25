@@ -12,7 +12,7 @@ class CategoryCubit extends Cubit<CategoryState>{
   void fetchCategorys() async {
     try {
       List<CategoryModel> categories = await repo.fetchListCategory();
-      emit(CategorysLoaded(categories));
+      emit(CategoryLoaded(categories));
     } catch (ex) {
       emit(CategoryError(ex.toString()));
     }

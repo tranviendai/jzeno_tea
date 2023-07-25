@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jzeno_tea/app/constants/app_constant.dart';
+import 'package:jzeno_tea/app/data/bloc/auth/auth_cubit.dart';
+import 'package:jzeno_tea/app/data/bloc/auth/auth_state.dart';
 import 'package:jzeno_tea/app/data/bloc/category/category_cubit.dart';
 import 'package:jzeno_tea/app/data/bloc/category/category_state.dart';
 import 'package:jzeno_tea/app/data/bloc/product/product_cubit.dart';
@@ -8,8 +12,10 @@ import 'package:jzeno_tea/app/data/bloc/product/product_state.dart';
 import 'package:jzeno_tea/app/model/cart_model.dart';
 import 'package:jzeno_tea/app/model/category_model.dart';
 import 'package:jzeno_tea/app/model/product_model.dart';
+import 'package:jzeno_tea/app/model/user_model.dart';
 import 'package:jzeno_tea/screen/mobile_responsive/cart/bloc/cart_cubit.dart';
 import 'package:jzeno_tea/screen/widget/category_gird.dart';
+import 'package:jzeno_tea/screen/widget/layout/authen/profile/profile_screen.dart';
 import 'package:jzeno_tea/screen/widget/layout/product/product_gird.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,7 +29,15 @@ class _HomeScreenState extends State<HomeScreen> {
   List<ProductModel> products = [];
   List<CategoryModel> categories = [];
   @override
+  void initState() {
+    context.read<AuthCubit>().getUsers();
+    super.initState();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
+    UserModel user = UserModel();
     return Scaffold(
         body: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -72,28 +86,35 @@ class _HomeScreenState extends State<HomeScreen> {
                 decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(5)),
-                child: InkWell(
-                  onTap: () {
-                    print(MediaQuery.of(context).size.width);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+                child: BlocBuilder<AuthCubit,AuthState>(
+                  builder: (context, state) {
+                  if(state is AuthLoadedState){
+                    user = state.user!;
+                  }
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(user: user)));
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CircleAvatar(
-                              backgroundImage: AssetImage(AppImage.logo),
-                              radius: 20),
-                          Container(
-                            margin: const EdgeInsets.all(10),
-                            child: Text("Hello ${AppText.welcomeHeader}",
-                                style: AppText.h1),
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                  backgroundImage: NetworkImage(user.image!),
+                                  radius: 20),
+                              Container(
+                                margin: const EdgeInsets.all(10),
+                                child: Text("Hello ${user.fullName}",
+                                    style: AppText.h1),
+                              ),
+                            ],
                           ),
+                          const Icon(Icons.arrow_forward_ios)
                         ],
                       ),
-                      const Icon(Icons.arrow_forward_ios)
-                    ],
-                  ),
+                    );
+                  }
                 ),
               ),
               Container(
@@ -112,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Theme.of(context).primaryColor),
                       child: BlocBuilder<CategoryCubit, CategoryState>(
                         builder: (context, state) {
-                          if (state is CategorysLoaded) {
+                          if (state is CategoryLoaded) {
                             categories = state.categories;
                           }
                           return girdCategories(categories.reversed.toList());

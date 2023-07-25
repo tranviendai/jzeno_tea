@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jzeno_tea/app/data/bloc/auth/auth_cubit.dart';
 import 'package:jzeno_tea/screen/mobile_responsive/cart/bloc/cart_cubit.dart';
 import 'package:jzeno_tea/app/data/bloc/category/category_cubit.dart';
 import 'package:jzeno_tea/app/data/bloc/product/product_cubit.dart';
@@ -22,7 +23,8 @@ class MainApp extends StatelessWidget {
         BlocProvider(create: (context) =>CategoryCubit()),
         BlocProvider(create: (context) => ToppingCubit()),
         BlocProvider(create: (context) => CartCubit()),
-        BlocProvider(create: (context) =>SettingCubit())
+        BlocProvider(create: (context) =>SettingCubit()),
+        BlocProvider(create: (context) =>AuthCubit())
       ],
       child: BlocBuilder<SettingCubit,ThemeData>(
         builder: (context,state) => MaterialApp(

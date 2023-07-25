@@ -83,7 +83,7 @@ class _ProductDetailState extends State<ProductDetail> {
             child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-                child: product.isPublic!
+                child: widget.product.isPublish!
                     ? Row(children: [
                         Expanded(
                           flex: 1,
